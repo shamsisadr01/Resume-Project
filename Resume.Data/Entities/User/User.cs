@@ -1,10 +1,10 @@
-﻿namespace Resume.Data.Entities.User;
+﻿using Resume.Data.Entities.Common;
 
-public class User
+namespace Resume.Data.Entities.User;
+
+public class User : BaseEntity<int>
 {
     #region Properties
-
-    public int Id { get; set; }
 
     public string FirstName { get; set; }
 
@@ -16,8 +16,6 @@ public class User
 
     public bool IsActive { get; set; }
     public string Mobile { get; set; }
-
-    public DateTime RegisterDate { get; set; }
 
     #endregion
 }

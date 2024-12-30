@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Resume.Data.Context;
+using Resume.Web.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,9 @@ builder.Services.AddDbContext<ResumeContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ResumeConnectionString"));
 });
+
+
+builder.Services.RegisterServices();
 
 #endregion
 
