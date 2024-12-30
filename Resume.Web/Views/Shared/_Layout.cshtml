@@ -7,6 +7,7 @@
 	<title>شهریار شمسی صدر | @ViewData["Title"]</title>
 
     <partial name="_Header"/>
+    @await RenderSectionAsync("Styles",false)
 
 </head>
 <body>
@@ -41,6 +42,8 @@
 
  <partial name="_SiteTools"/>
     <!-- Demo Menu -->
-	<partial name="_Footer"/>
-</body>
+    <partial name="_Footer"/>
+	
+    @await RenderSectionAsync("Scripts",false)
+    </body>
 </html>
