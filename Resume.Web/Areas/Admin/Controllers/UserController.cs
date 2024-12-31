@@ -43,11 +43,27 @@ public class UserController : AdminBaseController
             return View(model);
         }
 
+        var result = await _userService.CreateAsync(model);
+
+        switch (result)
+        {
+            case CreateUserResult.Success:
+                break;
+            case CreateUserResult.Error:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
         return View();
     }
 
     public async Task<IActionResult> Update(int id)
     {
+        var user = await _userService.EditAsync(id);
+        if (user == null)
+            return NotFound();
+
         return View();
     }
 
@@ -57,6 +73,22 @@ public class UserController : AdminBaseController
         if (ModelState.IsValid == false)
         {
             return View(model);
+        }
+
+        var result = await _userService.UpdateAsync(model);
+
+        switch (result)
+        {
+            case EditUserResult.Success:
+                break;
+            case EditUserResult.Error:
+                break;
+            case EditUserResult.MobileDuplicated:
+                break;
+            case EditUserResult.EmailDuplicated:
+                break;
+            case EditUserResult.UserNotFound:
+                break;
         }
 
         return View();
