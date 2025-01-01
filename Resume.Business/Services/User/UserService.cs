@@ -75,4 +75,9 @@ public class UserService : IUserService
             ID = user.Id
         };
     }
+
+    public async Task<FilterUserViewModels> FilterAsync(FilterUserViewModels model)
+    {
+        return await _userRepository.FilterAsync(model);
+    }
 }

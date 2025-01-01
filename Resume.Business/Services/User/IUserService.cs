@@ -8,4 +8,6 @@ public interface IUserService
     Task<EditUserResult> UpdateAsync(EditUserViewModels model);
 
     Task<EditUserViewModels> EditAsync(int id);
+
+    Task<FilterUserViewModels> FilterAsync(FilterUserViewModels model);
 }

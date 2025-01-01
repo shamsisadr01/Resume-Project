@@ -25,9 +25,10 @@ public class UserController : AdminBaseController
 
     #region Actions
 
-    public async Task<IActionResult> List()
+    public async Task<IActionResult> List(FilterUserViewModels filter)
     {
-        return View();
+        var result = await _userService.FilterAsync(filter);
+        return View(result);
     }
 
     public IActionResult Create()

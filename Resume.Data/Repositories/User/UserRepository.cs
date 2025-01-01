@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Resume.Data.Context;
 using System.Reflection;
+using Resume.Data.ViewModels.User;
 
 namespace Resume.Data.Repository.User;
 
@@ -41,5 +42,34 @@ public class UserRepository : IUserRepository
     public void Update(Entities.User.User user)
     {
         _context.Users.Update(user);
+    }
+
+    public async Task<FilterUserViewModels> FilterAsync(FilterUserViewModels model)
+    {
+        var query = _context.Users.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(model.Email))
+        {
+            query = query.Where(user => user.Email.Contains(model.Email));
+        }
+
+        if (!string.IsNullOrWhiteSpace(model.Mobile))
+        {
+            query = query.Where(user => user.Mobile.Contains(model.Mobile));
+        }
+
+        await model.Paging(query.Select(user=> new UserDetailsViewModels()
+        {
+            Mobile = user.Mobile,
+            Email = user.Email,
+            Id = user.Id,
+            IsActive = user.IsActive,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            CreateDate = user.CreateDate
+        }));
+
+        return model;
+
     }
 }

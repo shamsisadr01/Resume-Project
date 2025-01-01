@@ -1,4 +1,6 @@
-﻿namespace Resume.Data.Repository.User;
+﻿using Resume.Data.ViewModels.User;
+
+namespace Resume.Data.Repository.User;
 
 public interface IUserRepository
 {
@@ -11,5 +13,7 @@ public interface IUserRepository
     Task<bool> DuplicatedMobileAsync(int id,string mobile);
 
     void Update(Entities.User.User user);
+
+    Task<FilterUserViewModels> FilterAsync(FilterUserViewModels model);
 
 }
