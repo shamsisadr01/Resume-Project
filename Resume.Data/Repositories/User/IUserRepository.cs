@@ -16,4 +16,6 @@ public interface IUserRepository
 
     Task<FilterUserViewModels> FilterAsync(FilterUserViewModels model);
 
+    Task<Entities.User.User> GetUserByEmail(string Email);
+
 }

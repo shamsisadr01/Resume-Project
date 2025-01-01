@@ -1,4 +1,6 @@
-﻿using Resume.Data.Repository.User;
+﻿using Resume.Bussines.Security;
+using Resume.Data.Repository.User;
+using Resume.Data.ViewModels.Account;
 using Resume.Data.ViewModels.User;
 
 namespace Resume.Business.Services.User;
@@ -21,7 +23,7 @@ public class UserService : IUserService
             FirstName = model.FirstName,
             LastName = model.LastName,
             Mobile = model.Mobile,
-            Password = model.Password,
+            Password = model.Password.Trim().EncodePasswordMd5(),
             IsActive = model.IsActive
         };
 
@@ -79,5 +81,30 @@ public class UserService : IUserService
     public async Task<FilterUserViewModels> FilterAsync(FilterUserViewModels model)
     {
         return await _userRepository.FilterAsync(model);
+    }
+
+    public async Task<LoginResult> LoginAsync(LoginViewModels model)
+    {
+        model.Email = model.Email.Trim().ToLower();
+        var user = await _userRepository.GetUserByEmail(model.Email);
+        if (user == null)
+        {
+            return LoginResult.UserNotFound;
+        }
+
+        string hashPassword = model.Password.Trim().EncodePasswordMd5();
+
+        if (user.Password != hashPassword)
+        {
+            return LoginResult.UserNotFound;
+        }
+
+        return LoginResult.Success;
+    }
+
+    public async Task<Data.Entities.User.User> GetByEmail(string email)
+    {
+        email = email.Trim().ToLower();
+        return await _userRepository.GetUserByEmail(email);
     }
 }

@@ -72,4 +72,9 @@ public class UserRepository : IUserRepository
         return model;
 
     }
+
+    public async Task<Entities.User.User> GetUserByEmail(string Email)
+    {
+        return await _context.Users.FirstOrDefaultAsync(user=>user.Email.Contains(Email));
+    }
 }
