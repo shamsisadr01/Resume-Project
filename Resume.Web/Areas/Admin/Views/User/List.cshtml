@@ -19,7 +19,7 @@
                 <form method="get" asp-action="List" id="Filter-Search">
                     <input type="hidden" asp-for="Page"/>
                     <div class="row clearfix">
-                        <div class="col-sm-12" col-md-4>
+                        <div class="col-sm-12 col-md-4">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <input type="text" class="form-control" asp-for="Mobile">
@@ -105,7 +105,11 @@
                                         <div class="badge col-red">غیر فعال </div>
                                     }
                                 </td>
-                                <td></td>
+                                <td>
+                                    <a asp-action="Update" class="text-warning" asp-route-id="@user.Id">
+                                        <i class="fa fa-pen"></i>
+                                    </a>
+                                </td>
                             </tr>
                         }
 

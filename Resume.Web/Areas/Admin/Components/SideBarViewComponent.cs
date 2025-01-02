@@ -1,16 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Resume.Business.Services.User;
+using Resume.Bussines.Extensions;
 
 namespace Resume.Web.Areas.Admin.Components;
 
 public class SideBarViewComponent : ViewComponent
 {
-    #region Method
+    private readonly IUserService _userService;
+
+    public SideBarViewComponent(IUserService userService)
+    {
+        _userService = userService;
+    }
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
+        ViewData["User"] = await _userService.GetInformationAsync(User.GetUserId());
         return View("SideBar");
     }
 
-    #endregion
+
 
 }

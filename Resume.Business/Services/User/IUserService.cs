@@ -15,4 +15,6 @@ public interface IUserService
     Task<LoginResult> LoginAsync(LoginViewModels model);
 
     Task<Data.Entities.User.User> GetByEmail(string email);
+
+    Task<UserDetailsViewModels> GetInformationAsync(int id);
 }

@@ -50,12 +50,12 @@ public class UserRepository : IUserRepository
 
         if (!string.IsNullOrWhiteSpace(model.Email))
         {
-            query = query.Where(user => user.Email.Contains(model.Email));
+            query = query.Where(user => EF.Functions.Like(user.Email,$"%{model.Email}%"));//user.Email.Contains(model.Email)
         }
 
         if (!string.IsNullOrWhiteSpace(model.Mobile))
         {
-            query = query.Where(user => user.Mobile.Contains(model.Mobile));
+            query = query.Where(user => EF.Functions.Like(user.Mobile, $"%{model.Mobile}%"));
         }
 
         await model.Paging(query.Select(user=> new UserDetailsViewModels()

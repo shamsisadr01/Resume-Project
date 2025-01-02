@@ -107,4 +107,25 @@ public class UserService : IUserService
         email = email.Trim().ToLower();
         return await _userRepository.GetUserByEmail(email);
     }
+
+    public async Task<UserDetailsViewModels> GetInformationAsync(int id)
+    {
+        var user = await _userRepository.GetUserById(id);
+
+        if (user == null)
+        {
+            return null;
+        }
+
+        return new UserDetailsViewModels()
+        {
+            Mobile = user.Mobile,
+            Email = user.Email,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            CreateDate = user.CreateDate,
+            Id = user.Id,
+            IsActive = user.IsActive
+        };
+    }
 }

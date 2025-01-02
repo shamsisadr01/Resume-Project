@@ -49,14 +49,15 @@ public class UserController : AdminBaseController
         switch (result)
         {
             case CreateUserResult.Success:
+                TempData[SuccessMessage] = "کاربر با موفقیت ایجاد شد.";
+                return RedirectToAction("List");
                 break;
             case CreateUserResult.Error:
+                TempData[ErrorMessage] = "کاربر با موفقیت ایجاد نشد.";
                 break;
-            default:
-                throw new ArgumentOutOfRangeException();
         }
 
-        return View();
+        return View(model);
     }
 
     public async Task<IActionResult> Update(int id)
@@ -65,7 +66,7 @@ public class UserController : AdminBaseController
         if (user == null)
             return NotFound();
 
-        return View();
+        return View(user);
     }
 
     [HttpPost]
@@ -81,18 +82,24 @@ public class UserController : AdminBaseController
         switch (result)
         {
             case EditUserResult.Success:
+                TempData[SuccessMessage] = "کاربر با موفقیت ویرایش شد.";
+                return RedirectToAction("List");
                 break;
             case EditUserResult.Error:
+                TempData[ErrorMessage] = "کاربر با موفقیت ویرایش نشد.";
                 break;
             case EditUserResult.MobileDuplicated:
+                TempData[ErrorMessage] = "موبایل تکراری است.";
                 break;
             case EditUserResult.EmailDuplicated:
+                TempData[ErrorMessage] = "ایمیل تکراری است.";
                 break;
             case EditUserResult.UserNotFound:
+                TempData[ErrorMessage] = "کاربر پیدا نشد.";
                 break;
         }
 
-        return View();
+        return View(model);
     }
 
 
