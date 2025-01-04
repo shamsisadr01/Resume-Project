@@ -26,7 +26,7 @@ public class UserRepository : IUserRepository
 
     public async Task<Entities.User.User> GetUserById(int id)
     {
-        return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        return await _context.Users.FirstOrDefaultAsync(user => user.Id == id);
     }
 
     public async Task<bool> DuplicatedEmailAsync(int id, string email)

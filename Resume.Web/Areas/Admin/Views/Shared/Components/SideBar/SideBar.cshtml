@@ -1,7 +1,6 @@
-﻿@using Resume.Data.ViewModels.User
-@{
-    UserDetailsViewModels user = ViewData["User"] as UserDetailsViewModels ?? new UserDetailsViewModels();
-}
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Resume.Data.ViewModels.User.UserDetailsViewModels
+
 
 <div>
     <!-- Left Sidebar -->
@@ -15,7 +14,7 @@
                             <img src="/Admin/assets/images/usrbig.jpg" alt="profile">
                         </div>
                         <div class="profile-info">
-                            <h3>@user.FirstName @user.LastName</h3>
+                            <h3>@Model.FirstName @Model.LastName</h3>
                             <p>خوش آمدید !</p>
                         </div>
                     </div>
@@ -23,7 +22,7 @@
                 <li class="active">
                     <a href="#" onclick="return false;" class="menu-toggle toggled waves-effect waves-block">
                         <i class="menu-icon ti-home"></i>
-                        <span>کاربران</span>
+                        <span>مدیریت کاربران</span>
                     </a>
                     <ul class="ml-menu" style="display: block;">
                         <li class="active">
@@ -32,6 +31,19 @@
                         <li class="active">
                             <a  asp-area="Admin" asp-action="Create" asp-controller="User" >افزودن کاربر </a>
                         </li>
+                    </ul>
+                </li>
+                
+                <li class="active">
+                    <a href="#" onclick="return false;" class="menu-toggle toggled waves-effect waves-block">
+                        <i class="menu-icon ti-home"></i>
+                        <span>مدیریت تماس با ما</span>
+                    </a>
+                    <ul class="ml-menu" style="display: block;">
+                        <li class="active">
+                            <a  asp-area="Admin" asp-action="List" asp-controller="ContactUs" >لیست تماس با ما</a>
+                        </li>
+                       
                     </ul>
                 </li>
             </ul>

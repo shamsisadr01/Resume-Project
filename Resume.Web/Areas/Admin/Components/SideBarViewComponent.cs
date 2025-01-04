@@ -15,8 +15,8 @@ public class SideBarViewComponent : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        ViewData["User"] = await _userService.GetInformationAsync(User.GetUserId());
-        return View("SideBar");
+        var user = await _userService.GetInformationAsync(User.GetUserId());
+        return View("SideBar",user);
     }
 
 

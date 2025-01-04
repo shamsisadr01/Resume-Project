@@ -1,4 +1,8 @@
-﻿using Resume.Business.Services.User;
+﻿using Resume.Business.Services.ContactUs;
+using Resume.Business.Services.User;
+using Resume.Bussines.Services.Implementation;
+using Resume.Bussines.Services.Interfaces;
+using Resume.Data.Repositories.ContactUs;
 using Resume.Data.Repository.User;
 
 namespace Resume.Web.Config;
@@ -10,12 +14,16 @@ public static class DIContainer
         #region Repository
 
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IContactUsRepository, ContactUsRepository>();
 
         #endregion
 
         #region Services
 
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IContactUsService, ContactUsService>();
+        services.AddScoped<IEmailService, EmailService>();
+       // services.AddScoped<IViewRenderService>();
 
         #endregion
     }
