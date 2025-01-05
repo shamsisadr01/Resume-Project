@@ -28,7 +28,7 @@ public class EmailService : IEmailService
 
             var smtpServer = new SmtpClient(_configuration["Settings:EmailSmtp:Host"]);
 
-            mail.From = new MailAddress(fromEmail, "علی رضایی");
+            mail.From = new MailAddress(fromEmail, "شهریار شمسی صدر");
 
             mail.To.Add(to);
 

@@ -8,14 +8,14 @@ namespace Resume.Business.Services.ContactUs;
 public class ContactUsService : IContactUsService
 {
     private readonly IContactUsRepository _contactUsRepository;
-   // private readonly IViewRenderService _viewRenderService;
+    private readonly IViewRenderService _viewRenderService;
     private readonly IEmailService _emailService;
 
-    public ContactUsService(IContactUsRepository contactUsRepository, IEmailService emailService)
+    public ContactUsService(IContactUsRepository contactUsRepository, IEmailService emailService, IViewRenderService viewRenderService)
     {
         _contactUsRepository = contactUsRepository;
-       // _viewRenderService = viewRenderService;
         _emailService = emailService;
+        _viewRenderService = viewRenderService;
     }
 
     public async Task<FilterContactUsViewModels> FilterAsync(FilterContactUsViewModels model)
@@ -65,8 +65,8 @@ public class ContactUsService : IContactUsService
         _contactUsRepository.Update(contactUs);
         await _contactUsRepository.SaveAsync();
 
-       // string body = await _viewRenderService.RenderToStringAsync("Emails/AnswerContactUs", model);
-        //await _emailService.SendEmail(contactUs.Email, "پاسخ به تماس با ما", body);
+        string body = await _viewRenderService.RenderToStringAsync("Emails/AnswerContactUs", model);
+        await _emailService.SendEmail(contactUs.Email, "پاسخ به تماس با ما", body);
 
         return AnswerResult.success;
     }

@@ -23,7 +23,7 @@ public static class DIContainer
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IContactUsService, ContactUsService>();
         services.AddScoped<IEmailService, EmailService>();
-       // services.AddScoped<IViewRenderService>();
+        services.AddScoped<IViewRenderService,ViewRenderService>();
 
         #endregion
     }
