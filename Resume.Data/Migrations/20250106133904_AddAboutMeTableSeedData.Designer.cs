@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Resume.Data.Context;
 
@@ -11,9 +12,11 @@ using Resume.Data.Context;
 namespace Resume.Data.Migrations
 {
     [DbContext(typeof(ResumeContext))]
-    partial class ResumeContextModelSnapshot : ModelSnapshot
+    [Migration("20250106133904_AddAboutMeTableSeedData")]
+    partial class AddAboutMeTableSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,10 +48,6 @@ namespace Resume.Data.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -70,11 +69,10 @@ namespace Resume.Data.Migrations
                         {
                             Id = 1,
                             Bio = "Hi",
-                            BirthDate = new DateOnly(2025, 1, 7),
-                            CreateDate = new DateTime(2025, 1, 7, 12, 12, 21, 264, DateTimeKind.Local).AddTicks(8607),
+                            BirthDate = new DateOnly(2025, 1, 6),
+                            CreateDate = new DateTime(2025, 1, 6, 17, 9, 4, 363, DateTimeKind.Local).AddTicks(1852),
                             Email = "shamsisadr01@gmail.com",
                             FirstName = "شهریار",
-                            ImageName = "Default.png",
                             LastName = "شمسی صدر",
                             Location = "خرم آباد",
                             Mobile = "09367806232",
@@ -167,7 +165,7 @@ namespace Resume.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2025, 1, 7, 12, 12, 21, 263, DateTimeKind.Local).AddTicks(2910),
+                            CreateDate = new DateTime(2025, 1, 6, 17, 9, 4, 361, DateTimeKind.Local).AddTicks(4540),
                             Email = "shamsisadr01@gmail.com",
                             FirstName = "شهریار",
                             IsActive = true,
