@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Resume.Data.Entities.AboutMe;
+using Resume.Data.Entities.Activity;
 using Resume.Data.Entities.ContactUs;
 using Resume.Data.Entities.User;
 
@@ -19,6 +20,8 @@ public class ResumeContext : DbContext
     public DbSet<ContactUs> ContactUs { get; set; }
 
     public DbSet<AboutMe> AboutMe { get; set; }
+
+    public DbSet<Activity> Activity { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

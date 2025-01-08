@@ -1,0 +1,103 @@
+﻿@using Resume.Bussines.Extensions
+@model Resume.Data.ViewModels.Activity.FilterActivityViewModels
+@{
+    ViewData["Title"] = "لیست فعالیت ها";
+}
+
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                  فیلتر
+                </h2>
+               
+            </div>
+            <div class="body">
+                <form method="get" asp-action="List" id="Filter-Search">
+                    <input type="hidden" asp-for="Page"/>
+                    <div class="row clearfix">
+                        <div class="col-sm-12 col-md-4">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" asp-for="Title">
+                                    <label class="form-label" asp-for="Title">موبایل</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-success">جست و جو</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewData["Title"]
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="#" onclick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="#" onclick="return false;">اقدام</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="return false;">اقدامی دیگر</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="return false;">چیز دیگری اینجا</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                @if (Model != null && Model.Entities.Any())
+                {
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>آیدی </th>
+                            <th>عنوان </th>
+                            <th> تاریخ ایجاد</th>
+                            <th> عملیات</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var activity in Model.Entities)
+                        {
+                            <tr>
+                                <th scope="row">@activity.ActivityId</th>
+                                <td>@activity.Title</td>
+                                <td>@activity.CreatedDate.ToShamsi()</td>
+                                <td>
+                                     <a asp-action="Update" class="text-warning" asp-route-id="@activity.ActivityId">
+                                        <i class="fa fa-pen"></i>
+                                    </a> 
+                                </td>
+                            </tr>
+                        }
+
+                        </tbody>
+                    </table>
+                    <partial name="_AdminPagination" model="@Model.GetCurrentPaging()"/>
+                }
+                else
+                {
+                    <partial name="_AdminNotFound"/>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

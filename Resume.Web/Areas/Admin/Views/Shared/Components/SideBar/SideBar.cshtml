@@ -19,7 +19,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="active">
+                <li >
                     <a href="#" onclick="return false;" class="menu-toggle toggled waves-effect waves-block">
                         <i class="menu-icon ti-home"></i>
                         <span>مدیریت کاربران</span>
@@ -34,7 +34,7 @@
                     </ul>
                 </li>
                 
-                <li class="active">
+                <li >
                     <a href="#" onclick="return false;" class="menu-toggle toggled waves-effect waves-block">
                         <i class="menu-icon ti-home"></i>
                         <span>مدیریت تماس با ما</span>
@@ -47,7 +47,7 @@
                     </ul>
                 </li>
                 
-                <li class="active">
+                <li >
                     <a href="#" onclick="return false;" class="menu-toggle toggled waves-effect waves-block">
                         <i class="menu-icon ti-home"></i>
                         <span>مدیریت درباره من</span>
@@ -55,6 +55,23 @@
                     <ul class="ml-menu" style="display: block;">
                         <li class="active">
                             <a  asp-area="Admin" asp-action="Edit" asp-controller="AboutMe" >درباره من</a>
+                        </li>
+                       
+                    </ul>
+                </li>
+                
+                <li >
+                    <a href="#" onclick="return false;" class="menu-toggle toggled waves-effect waves-block">
+                        <i class="menu-icon ti-home"></i>
+                        <span>مدیریت فعالیت های من</span>
+                    </a>
+                    <ul class="ml-menu" style="display: block;">
+                        <li class="active">
+                            <a  asp-area="Admin" asp-action="List" asp-controller="Activity" >لیست فعالیت ها</a>
+                        </li>
+                        
+                        <li class="active">
+                            <a  asp-area="Admin" asp-action="Create" asp-controller="Activity" >ایجاد فعالیت </a>
                         </li>
                        
                     </ul>
