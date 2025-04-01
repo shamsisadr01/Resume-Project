@@ -1,12 +1,14 @@
 ﻿using Resume.Business.Services.AboutMe;
 using Resume.Business.Services.Activity;
 using Resume.Business.Services.ContactUs;
+using Resume.Business.Services.Education;
 using Resume.Business.Services.User;
 using Resume.Bussines.Services.Implementation;
 using Resume.Bussines.Services.Interfaces;
 using Resume.Data.Repositories.AboutMe;
 using Resume.Data.Repositories.Activity;
 using Resume.Data.Repositories.ContactUs;
+using Resume.Data.Repositories.Education;
 using Resume.Data.Repository.User;
 
 namespace Resume.Web.Config;
@@ -21,6 +23,7 @@ public static class DIContainer
         services.AddScoped<IContactUsRepository, ContactUsRepository>();
         services.AddScoped<IAboutMeRepository, AboutMeRepository>();
         services.AddScoped<IActivityRepository, ActivityRepository>();
+        services.AddScoped<IEducationRepository, EducationRepository>();
 
         #endregion
 
@@ -30,6 +33,7 @@ public static class DIContainer
         services.AddScoped<IContactUsService, ContactUsService>();
         services.AddScoped<IAboutMetService, AboutMeService>();
         services.AddScoped<IActivityService, ActivityService>();
+        services.AddScoped<IEducationService, EducationService>();
 
 
         services.AddScoped<IEmailService, EmailService>();

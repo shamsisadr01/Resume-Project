@@ -76,6 +76,23 @@
                        
                     </ul>
                 </li>
+                
+                <li >
+                    <a href="#" onclick="return false;" class="menu-toggle toggled waves-effect waves-block">
+                        <i class="menu-icon ti-home"></i>
+                        <span>مدیریت تحصیلات من</span>
+                    </a>
+                    <ul class="ml-menu" style="display: block;">
+                        <li class="active">
+                            <a  asp-area="Admin" asp-action="List" asp-controller="Education" >لیست تحصیلات </a>
+                        </li>
+                        
+                        <li class="active">
+                            <a  asp-area="Admin" asp-action="Create" asp-controller="Education" >ایجاد تحصیلات </a>
+                        </li>
+                       
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- #Menu -->
